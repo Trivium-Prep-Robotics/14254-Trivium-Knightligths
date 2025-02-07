@@ -14,6 +14,7 @@ max in horizontal extension: -2862, new 1079
 
 117 rpm: 1425.1
 
+I love touching kids 
 
 makebthe arm so that a button make it go vertical and another horizontal
 when vertical, extend fully,
