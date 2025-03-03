@@ -4,9 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Parts;
-import org.firstinspires.ftc.teamcode.parts.ArmTemplate;
-import org.firstinspires.ftc.teamcode.parts.ClawTemplate;
-import org.firstinspires.ftc.teamcode.parts.DriveTemplate;
+import org.firstinspires.ftc.teamcode.parts.OurRobot;
 
 
 /**
@@ -19,18 +17,20 @@ public class teleOpTemplate extends LinearOpMode {
 
     public void runOpMode() throws InterruptedException {
         Parts robot = new Parts(hardwareMap); // configure robot
-        DriveTemplate drive = new DriveTemplate(); // arm class
-        ClawTemplate claw = new ClawTemplate(); // claw class
-        ArmTemplate arm = new ArmTemplate(); // drive class
+        OurRobot bot = new OurRobot(); // configure robot
+        // if you want to use other classes these are example ways of how you would do that
+//        DriveTemplate drive = new DriveTemplate();
+//        ClawTemplate claw = new ClawTemplate();
+//        ArmTemplate arm = new ArmTemplate();
 
         waitForStart(); // initialize
 
         // set the power used for arm motors to 1
-        arm.armPower(1); // set arm power
-        arm.extendPower(1); // set extend power
+        bot.armPower(1); // set arm power
+        bot.extendPower(1); // set extend power
 
-        claw.openClosePose(0.4, 0.8); // set claw positions
-        claw.sampSpecPose(0.075, 0.6); // set wrist positions
+        bot.openClosePose(0.4, 0.8); // set claw positions
+        bot.sampSpecPose(0.075, 0.6); // set wrist positions
 
         while (opModeIsActive()) {
             /**
@@ -46,27 +46,29 @@ public class teleOpTemplate extends LinearOpMode {
              */
 
             // arm controls
-            arm.up(gamepad2.dpad_up);
-            arm.down(gamepad2.dpad_down);
+            bot.up(gamepad2.dpad_up);
+            bot.down(gamepad2.dpad_down);
             // I put this in my code so that it knew when to stop moving
 //            arm.armStop(!(gamepad2.dpad_up || gamepad2.dpad_down));
 
             // extend controls
-            arm.extend(gamepad2.right_trigger);
-            arm.retract(gamepad2.left_trigger);
+            bot.extend(gamepad2.right_trigger);
+            bot.retract(gamepad2.left_trigger);
             // I put this in my code so that it knew when to stop moving
 //            arm.slideStop((gamepad2.left_trigger == 0 && gamepad2.right_trigger == 0 && !gamepad2.dpad_up && !gamepad2.dpad_down));
 
             // claw controls
-            claw.grabs(gamepad2.right_bumper);
-            claw.drops(gamepad2.left_bumper);
+            bot.grabs(gamepad2.right_bumper);
+            bot.drops(gamepad2.left_bumper);
 
             // wrist controls
-            claw.specimen(gamepad2.y);
-            claw.sample(gamepad2.a);
+            bot.specimen(gamepad2.y);
+            bot.sample(gamepad2.a);
 
-            // the particular buttons for field centric drive are just in the method, so the only parameter you need is the gamepad you want the controls on
-            drive.feildCentric(gamepad1);
+            // sets field centric drive, if you would like robot centric or tank uncomment which one you want but make sure no more than one is uncommented
+            bot.feildCentric(gamepad1);
+//            bot.robotCentric(gamepad1);
+//            bot.tankDrive(gamepad1);
         }
     }
 }

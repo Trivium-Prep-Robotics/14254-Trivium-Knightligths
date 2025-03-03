@@ -4,9 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Parts;
-import org.firstinspires.ftc.teamcode.parts.ArmTemplate;
-import org.firstinspires.ftc.teamcode.parts.ClawTemplate;
-import org.firstinspires.ftc.teamcode.parts.DriveTemplate;
+import org.firstinspires.ftc.teamcode.parts.OurRobot;
 
 /**
  * This is the general structure for an autonomous
@@ -17,9 +15,7 @@ import org.firstinspires.ftc.teamcode.parts.DriveTemplate;
 public class AutoTemplate extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Parts robot = new Parts(hardwareMap); // configure robot
-        DriveTemplate drive = new DriveTemplate(); // arm class
-        ClawTemplate claw = new ClawTemplate(); // claw class
-        ArmTemplate arm = new ArmTemplate(); // drive class
+        OurRobot bot = new OurRobot(); // configure robot
 
         waitForStart();
         

@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.hardware.ServoImplEx;
 public class Parts {
 
     // declaring parts
+    // TODO: get rid of and/or add any parts you need
     public static DcMotor FR, FL, BR, BL;
     public static DcMotor piv1, piv2;
     public static DcMotor slide;

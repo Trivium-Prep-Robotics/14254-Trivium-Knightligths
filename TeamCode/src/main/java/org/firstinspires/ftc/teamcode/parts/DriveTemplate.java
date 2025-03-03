@@ -72,4 +72,33 @@ public class DriveTemplate implements Drive {
         Parts.BL.setPower((newVertical - newHorizontal + pivot) / denominator);
         Parts.BR.setPower((newVertical + newHorizontal - pivot) / denominator);
     }
+
+    public void robotCentric(Gamepad gamepad) {
+        double vertical = -gamepad.left_stick_y * Parts.driveMaxSpd;
+        double horizontal = gamepad.left_stick_x * Parts.driveMaxSpd;
+        double pivot = gamepad.right_stick_x * Parts.driveMaxSpd;
+        double denominator = Math.max(Math.abs(vertical) + Math.abs(horizontal) + Math.abs(pivot), 1);
+
+        if (gamepad.right_trigger > 0) {
+            vertical = -gamepad.left_stick_y * Parts.driveSlwSpd;
+            horizontal = gamepad.left_stick_x * Parts.driveSlwSpd;
+            pivot = gamepad.right_stick_x * (Parts.driveSlwSpd + 0.1);
+        }
+
+        // Setting Field Centric Drive
+        Parts.FL.setPower((vertical + horizontal + pivot) / denominator);
+        Parts.FR.setPower((vertical - horizontal - pivot) / denominator);
+        Parts.BL.setPower((vertical - horizontal + pivot) / denominator);
+        Parts.BR.setPower((vertical + horizontal - pivot) / denominator);
+    }
+
+    public void tankDrive(Gamepad gamepad) {
+        double leftPower = gamepad.left_stick_y * Parts.driveMaxSpd;
+        double rightPower = gamepad.right_stick_y * Parts.driveMaxSpd;
+
+        Parts.FL.setPower(leftPower);
+        Parts.FR.setPower(rightPower);
+        Parts.BL.setPower(leftPower);
+        Parts.BR.setPower(rightPower);
+    }
 }
