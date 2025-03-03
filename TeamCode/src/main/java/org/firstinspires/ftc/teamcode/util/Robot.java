@@ -1,11 +1,16 @@
-package org.firstinspires.ftc.teamcode.parts;
+package org.firstinspires.ftc.teamcode.util;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Parts;
 
-public class OurRobot implements Arm, Claw, Drive {
+/**
+ * example class for a robot that implements the interfaces
+ * All methods must be here, but if you don't want to use them simply leave them blank
+ */
+
+public class Robot implements Arm, Claw, Drive {
     /**
      * ARM SECTION
      */
