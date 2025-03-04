@@ -13,9 +13,8 @@ public class Parts {
     // declaring parts
     // TODO: get rid of and/or add any parts you need
     public static DcMotor FR, FL, BR, BL;
-    public static DcMotor piv1, piv2;
-    public static DcMotor slide;
-    public static Servo claw, wrist;
+    public static DcMotor leftArm, rightArm, rightExtend, leftExtend;
+    public static Servo clawMovement, claw;
 
 
     public static IMU imu;
@@ -53,8 +52,8 @@ public class Parts {
         BL = hardwareMap.get(DcMotor.class, "leftRear");
 
         // TODO: reverse any motors that go the opposite direction
-        FL.setDirection(DcMotorSimple.Direction.REVERSE);
-        BL.setDirection(DcMotorSimple.Direction.REVERSE);
+        FR.setDirection(DcMotorSimple.Direction.REVERSE);
+        BR.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // when setPower(0) -> motors brake
         FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -63,33 +62,38 @@ public class Parts {
         FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // TODO: assigning other motors used here
-        piv1 = hardwareMap.get(DcMotor.class, "pivotOne");
-        piv2 = hardwareMap.get(DcMotor.class, "pivotTwo");
-        slide = hardwareMap.get(DcMotor.class, "slide");
+        leftArm = hardwareMap.get(DcMotor.class, "leftArm");   //port 2 on expansion
+        rightArm = hardwareMap.get(DcMotor.class, "rightArm"); // port 3  on expansion
+        leftExtend = hardwareMap.get(DcMotor.class, "leftExtend"); //port 0 on expansion
+        rightExtend = hardwareMap.get(DcMotor.class, "rightExtend"); //port 1 on expansion
+
 
         // TODO: reverse any motors you need
         // we had two motors for our pivot
-        piv1.setDirection(DcMotorSimple.Direction.REVERSE);
-        piv2.setDirection(DcMotorSimple.Direction.REVERSE);
+
 
         // if you use encoders this is needed
-        piv1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        piv2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        piv1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        piv2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        slide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        slide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftExtend.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightExtend.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        leftExtend.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightExtend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // when setPower(0) -> motors brake
-        piv1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        piv2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        slide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftExtend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightExtend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // TODO: assigning servos here
-        claw = hardwareMap.get(ServoImplEx.class, "claw");
-        wrist = hardwareMap.get(ServoImplEx.class, "wrist");
+        clawMovement = hardwareMap.get(Servo.class, "clawMovement"); //port 0 on control
+        claw = hardwareMap.get(Servo.class, "claw");
 
         // TODO: assign and set up IMU here
         imu = hardwareMap.get(IMU.class, "imu");
